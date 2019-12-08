@@ -156,12 +156,17 @@
       "react-app"
     ],
     "plugins": [
-      "@babel/plugin-syntax-dynamic-import",
+      [
+        "@babel/plugin-proposal-decorators",
+        {
+          "legacy": true
+        }
+      ],
       [
         "import",
         {
           "libraryName": "antd-mobile",
-          "style": true
+          "style": "css"
         }
       ]
     ]

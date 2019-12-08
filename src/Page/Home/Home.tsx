@@ -4,14 +4,16 @@ import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
 import { getMusicUrl } from "src/Utils/HttpList/HomeHttp/HomeHttp";
 import { GetMusicUrltype } from "src/Utils/HttpList/HomeHttp/HomeHttpType";
+import { RouteComponentProps } from 'react-router';
 
-const Home = (props: any) => {
+const Home = (props: RouteComponentProps) => {
     const [getLlist, setList] = useState<number[]>(new Array(100).fill(null).map((_, index: number) => index)); // 图片懒加载示例
     const [getTouchmoveStatus, setTouchmoveStatus] = useState<boolean>(false); // touchmove 状态
     const [getMusicList, setMusicList] = useState<GetMusicUrltype>(); // 数据类型
     const toastRef = useRef<HTMLDivElement>(null);
     // 这里只请求一次
     useEffect(() => {
+        console.log(props, '---props----')
         homeListHttp();
         return () => document.body.removeEventListener("touchmove", slideEvent)
     }, []);
