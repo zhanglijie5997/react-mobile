@@ -60,7 +60,7 @@ const Home = (props: RouteComponentProps) => {
     })
 
     return (
-        <div onClickCapture={toastShow} ref={toastRef} className={[styles.size, getTouchmoveStatus ? styles.hide : styles.show].join(" ")}>
+        <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")}>
             {(lazyLoadList)}
             Home1315ff
         </div>

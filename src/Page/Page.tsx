@@ -6,7 +6,7 @@ const User = loadable(() => import("./User/User"));
 // 底部路由配置
 export const bottomRouterConfig: RouteConfigType[] = [
     {
-        path: "/home",
+        path: "/index",
         excat: true,
         component: Home,
         meta: {
