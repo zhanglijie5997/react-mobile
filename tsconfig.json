@@ -20,7 +20,7 @@
     "noUnusedLocals": false,
     "experimentalDecorators":true,
     "allowUnusedLabels": true, // 不报告未使用标签错误
-    "diagnostics": true, // 显示诊断信息
+    "diagnostics": false, // 显示诊断信息
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true, // 开启全迭代模式
     "paths": {
