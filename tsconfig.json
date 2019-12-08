@@ -1,0 +1,43 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "build/dist",
+    "module": "esnext",
+    "target": "es5",
+    "lib": ["esnext", "dom"],
+    "sourceMap": true,
+    "allowJs": true,
+    "jsx": "react",
+    "moduleResolution": "node",
+    "rootDir": "..",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitReturns": true,
+    "noImplicitThis": true,
+    "noImplicitAny": true,
+    "importHelpers": true,
+    "strictNullChecks": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "noUnusedLocals": false,
+    "experimentalDecorators":true,
+    "allowUnusedLabels": true, // 不报告未使用标签错误
+    "diagnostics": true, // 显示诊断信息
+    "allowSyntheticDefaultImports": true,
+    "downlevelIteration": true, // 开启全迭代模式
+    "paths": {
+      "@/": ["src/"],
+      "@/components": ["src/components"],
+      "@/static": ["src/static"],
+      "@/utils": ["src/utils"],
+      "@/pages": ["src/pages"]
+    }
+  },
+  "exclude": [
+    "node_modules",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ],
+}

@@ -1,0 +1,22 @@
+.size {
+    font-size: 16px;
+    width: 100vw;
+    height: 100vh;
+    .mask {
+        font-size: 50px;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+    }
+}
+.img {
+    width: 375px;
+}
+
+.show {
+    overflow: inherit;
+}
+.hide {
+    overflow: hidden;
+    height: 100vh;
+}

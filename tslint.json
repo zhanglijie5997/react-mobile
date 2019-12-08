@@ -1,0 +1,30 @@
+{
+  "extends": ["tslint:recommended", "tslint-react", "tslint-config-prettier"],
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts",
+      "coverage/lcov-report/*.js"
+    ]
+  },
+  "rules":{
+    "no-shadowed-variable": false, // 允许接口内使用其他接口
+    "no-debugger": false,
+    "no-console": false,
+    "no-empty-interface":true,
+    "only-arrow-functions": false, // 允许箭头函数中使用 es5 函数
+    "interface-name":false, // 接口开头不必用I
+    //需要按字母顺序引入模块
+    "ordered-imports": false,
+    // jsx中匿名函数
+    "jsx-no-lambda": false,
+    "no-string-literal":false,
+    "object-literal-sort-keys": false, // 检查对象文字中键的排序
+    "no-floating-promises": false, //必须正确处理promise的返回函数
+    "promise-function-async": false //要求异步函数返回promise
+  },
+  "jsRules": {
+    
+   
+  }
+}
