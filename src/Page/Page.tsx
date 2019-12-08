@@ -1,7 +1,7 @@
 import { RouteConfigType } from './PageType';
 import loadable from '@loadable/component';
-const Home = loadable(() => import("./Home/Home"));
-const User = loadable(() => import("./User/User"));
+const Home = loadable(() => import(/* webpackChunkName: "Home" */ "./Home/Home"));
+const User = loadable(() => import(/* webpackChunkName: "User" */"./User/User"));
 
 // 底部路由配置
 export const bottomRouterConfig: RouteConfigType[] = [
