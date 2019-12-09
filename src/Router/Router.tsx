@@ -29,8 +29,8 @@ const RouterPage: (props: RouteComponentProps) => JSX.Element = (props: RouteCom
 
     // 导航, 重定向路由不显示在页面
     const routerNav: JSX.Element[] =  bottomRouterConfig.map((item: RouteConfigType, index: number) => {
-        return <Link to={item.path} key={index} className={styles.navItem} >
-                  <div onClick={() => setSelectPage(index)} className={styles.navitemBox}>
+        return <Link to={item.path} key={index} className={styles.navItem} onClick={() => setSelectPage(index)}>
+                  <div  className={styles.navitemBox}>
                     <img src={getSelectPage === index ? item.selectImg : item.defaultImg} alt=""/>
                     <p className={[getSelectPage === index ? styles.selectColor : ''].join(" ")}>{item.meta.title}</p>
                   </div>
