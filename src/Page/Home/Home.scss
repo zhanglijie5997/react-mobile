@@ -2,6 +2,11 @@
     font-size: 16px;
     width: 100vw;
     height: 100vh;
+    div {
+        &:last-child {
+            padding-bottom: 105px;
+        }
+    }
     .mask {
         font-size: 50px;
         position: fixed;

@@ -7,18 +7,24 @@
        const [getStatus, setStatus] = useState<boolean>(false); 
     4. hooks useEffect, useCallback 页面如果有使用定时器等监听必须在useEffect内清除, 不然会报错, 内存泄漏
        [示例]
+       const [getTimer, setTimer] = useState<number | null>(0);
        useEffect(() => {
-           const time: NodeJs.Time = setTimeout(() => {
+           let time: NodeJs.Time = setTimeout(() => {
               // doSomething...
            }, 2000)
-           return clearTimeout(time)
+           return () => {
+               clearTimeout(time);
+               clearInterval(getTimer);
+               time = null;
+               getTimer = null;
+           }
        },[]);
 
        useCallBack(() => {
            const time = setInterval(() => {
                // doSomething...
            },1000);
-           return () => clearInterval(time);
+           setTimer(time)
        }, [])
     5. redux 使用步骤
        [示例]
@@ -33,10 +39,19 @@
     7. 「文件夹说明」
         src
         |__Component      组件文件夹, 每个路由对应的组件创建对应的文件夹, UniversalComponents 为通用文件夹
+          |__UniversalComponents  公共组件文件夹, 所有公共组件放在此文件夹
         |__Page           路由页面文件夹, 一个路由创建一个文件夹
         |__Redux          状态管理文件夹
+          |__Actions        redux   方法
+          |__Reducer        reducer 
+          |__State          数据
+          |__Store          集中管理数据
+          |__Types          方法枚举, 统一管理
         |__Roouter        路由管理文件夹
         |__Static         公共资源文件夹
+          |__Css            静态css资源
+          |__Images         静态图片资源
+          |__JS             静态js文件
         |__Utils          公共方法文件夹
           |__Axios        axios 文件
           |__HttpList     所有路由对应的文件夹的http请求

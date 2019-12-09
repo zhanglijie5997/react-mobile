@@ -53,9 +53,11 @@ const RouterPage: (props: RouteComponentProps) => JSX.Element = (props: RouteCom
     return (
         <div>
             {/* 路由页面 */}
-            <Switch>
-                { routerPage }
-            </Switch>
+            <div className={styles.pageView}>
+                <Switch>
+                    {routerPage}
+                </Switch>
+            </div>
             {/* 导航页 */}
             { getShowAppBar.includes(props.location.pathname) ? <div className={styles.appBar}>
                 <div className={styles.navBox}>{routerNav}</div>
