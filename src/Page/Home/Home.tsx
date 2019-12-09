@@ -23,7 +23,7 @@ const Home = (props: RouteComponentProps) => {
         if(getMusicList) {
             console.log(getMusicList, '---音乐类型---')
         }
-        return () => { /***/ }
+        // return () => { /***/ }
         // return () => homeListHttp();
     },[getMusicList]);
 
@@ -43,7 +43,7 @@ const Home = (props: RouteComponentProps) => {
     }
 
     const toastShow = useCallback(() => {
-        Toast.fail("success", 3,() => {
+        Toast.fail("success", 1,() => {
             document.body.removeEventListener("touchmove", slideEvent);
             document.body.style.overflow = "inherit";
             setTouchmoveStatus(false);
@@ -53,7 +53,7 @@ const Home = (props: RouteComponentProps) => {
 
     const lazyLoadList: JSX.Element[] =  getLlist.map((item: number, index: number) => {
         return (<div key={index}>
-                    <LazyLoad height={100} offset={10} >
+                    <LazyLoad height={120}  offset={300} >
                         <img  src='http://adpic.ilaisa.com/Upload/b0680fd3-568e-4bc4-8778-4d1ff7d11bba.png' className={styles.img}/>
                     </LazyLoad>
                 </div>)
@@ -61,6 +61,7 @@ const Home = (props: RouteComponentProps) => {
 
     return (
         <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")}>
+            <button onClick={homeListHttp}>请求数据</button>
             {(lazyLoadList)}
             Home1315ff
         </div>

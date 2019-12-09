@@ -14,9 +14,7 @@ import './Static/Css/Reset.css';
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
-      
         <App />
-      
     </BrowserRouter>
   </Provider>
   ,

@@ -1,12 +1,17 @@
 {
-  "Home.js": "/static/js/Home.61f49922.chunk.js",
-  "User.js": "/static/js/User.db6c0453.chunk.js",
-  "app.js": "/static/js/app.334ab39c.chunk.js",
-  "main.js": "/static/js/main.3d096d5c.js",
+  "Home.js": "/static/js/Home.1779b684.chunk.js",
+  "Login.js": "/static/js/Login.8f390565.chunk.js",
+  "Reservation.js": "/static/js/Reservation.db8788de.chunk.js",
+  "Shop.js": "/static/js/Shop.d849a04b.chunk.js",
+  "User.js": "/static/js/User.c3346b1a.chunk.js",
+  "app.js": "/static/js/app.01deecbe.chunk.js",
+  "main.js": "/static/js/main.8c850374.js",
   "main.css": "/static/css/main_d41d8cd9.css",
-  "vendors~Home.js": "/static/js/vendors~Home.625e3888.chunk.js",
+  "vendors~Home.js": "/static/js/vendors~Home.791229b1.chunk.js",
+  "vendors~app.js": "/static/js/vendors~app.319e7ca0.chunk.js",
   "index.html": "/index.html",
-  "static/js/app.334ab39c.chunk.js.gz": "/static/js/app.334ab39c.chunk.js.gz",
-  "static/js/main.3d096d5c.js.gz": "/static/js/main.3d096d5c.js.gz",
-  "static/js/vendors~Home.625e3888.chunk.js.gz": "/static/js/vendors~Home.625e3888.chunk.js.gz"
+  "static/js/app.01deecbe.chunk.js.gz": "/static/js/app.01deecbe.chunk.js.gz",
+  "static/js/main.8c850374.js.gz": "/static/js/main.8c850374.js.gz",
+  "static/js/vendors~Home.791229b1.chunk.js.gz": "/static/js/vendors~Home.791229b1.chunk.js.gz",
+  "static/js/vendors~app.319e7ca0.chunk.js.gz": "/static/js/vendors~app.319e7ca0.chunk.js.gz"
 }

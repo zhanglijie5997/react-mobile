@@ -1,4 +1,5 @@
-import { clearTimeout } from 'timers';
+export const mapKey = "f8b91a644d89df24e9415351357cff86"; // 高德地图key值
+
 /** 防抖
  * @param fn     回掉函数 
  * @param time   时间
@@ -54,4 +55,20 @@ export const throttle = (fn:() => void, time: number) => {
         }
     }
 }
+
+/** 小数点经度问题,保留2位小数
+ * @param str 数据
+ */
+export const decimal: (str: number) => number = (str: number) => {
+    // 数字类型转换字符串
+    const newStr: string = str.toString();
+    // 截取.前面字符串
+    const pointBeforeReg:RegExp = /\d+\./g;
+    const pointBefore: string = newStr.match(pointBeforeReg)![0];
+    // 截取.后面的2位
+    const pointAfterReg:RegExp = /\.(\d+)/g;
+    const pointAfter: string = newStr.match(pointAfterReg)![0].slice(1, 3);
+    return Number(pointBefore + pointAfter);
+}
+
 

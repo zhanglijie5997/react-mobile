@@ -1,6 +1,7 @@
 import { handleActions, Action } from "redux-actions";
-import { userStatus } from "../State/State";
+import { userStatus, userLocal } from '../State/State';
 import { ActionsEnum } from '../Types/Types';
+import { LocationType } from '../State/StateType';
 
 // 用户状态
 const userStatusReducer = handleActions<boolean>({
@@ -11,7 +12,15 @@ const userStatusReducer = handleActions<boolean>({
     }
 }, userStatus);
 
+// 用户地理位置
+const userLocaltionReducer = handleActions<LocationType>({
+    [ActionsEnum.userLocalAction]: (state: LocationType, action: Action<LocationType>) => {
+        sessionStorage.setItem("userLocal", JSON.stringify(action.payload));
+        return action.payload;
+    }
+}, userLocal)
 
 export {
     userStatusReducer, 
+    userLocaltionReducer,
 }

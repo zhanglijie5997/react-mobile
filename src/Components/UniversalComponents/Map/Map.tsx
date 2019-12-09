@@ -1,4 +1,4 @@
-import React from 'react';
+import React ,  { useEffect }from 'react';
 
 /** 地图组件 */
 const Map = () => {
