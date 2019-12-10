@@ -9,7 +9,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDir": "..",
+    "rootDirs": ["..", "src/Utils"],
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -24,11 +24,11 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true, // 开启全迭代模式
     "paths": {
-      "@/": ["src/"],
-      "@/components": ["src/components"],
-      "@/static": ["src/static"],
-      "@/utils": ["src/utils"],
-      "@/pages": ["src/pages"]
+      "@/*": ["/src/*"],
+      "@Components/*": ["/src/Components/*"],
+      "@Static/*": ["/src/Static/*"],
+      "@Utils/*": ["src/Utils/*"],
+      "@Page/*": ["/src/Page/*"]
     }
   },
   "exclude": [

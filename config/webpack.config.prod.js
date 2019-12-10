@@ -108,11 +108,11 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-      "@": path.join(__dirname, "../src"),
-      "@/pages": path.join(__dirname, "../src/pages"),
-      "@/component": path.join(__dirname, "../src/components"),
-      "@/utils": path.join(__dirname, "../src/utils"),
-      "@/static": path.join(__dirname, "../src/static"),
+      "@/": path.resolve(__dirname, "../src/"),
+      "@Pages/": path.resolve(__dirname, "../src/Page/"),
+      "@Component/": path.resolve(__dirname, "../src/Components/"),
+      "@Utils/": path.resolve(__dirname, "../src/Utils/"),
+      "@Static/": path.resolve(__dirname, "../src/Static/"),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -214,6 +214,8 @@ module.exports = {
                         importLoaders: 1,
                         minimize: true,
                         sourceMap: shouldUseSourceMap,
+                        localIdentName: '[path]_[name]_[local]_[hash:base64:8]'
+
                       },
                     },
                     {

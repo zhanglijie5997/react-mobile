@@ -2,7 +2,7 @@ import React, {useEffect, useCallback, useState, useRef} from 'react';
 import { Toast } from "antd-mobile";
 import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
-import { getMusicUrl } from "src/Utils/HttpList/HomeHttp/HomeHttp";
+import { getMusicUrl } from "@Utils/HttpList/HomeHttp/HomeHttp";
 import { GetMusicUrltype } from "src/Utils/HttpList/HomeHttp/HomeHttpType";
 import { RouteComponentProps } from 'react-router';
 

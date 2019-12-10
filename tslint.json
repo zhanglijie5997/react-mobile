@@ -22,7 +22,9 @@
     "object-literal-sort-keys": false, // 检查对象文字中键的排序
     "no-floating-promises": false, //必须正确处理promise的返回函数
     "promise-function-async": false, //要求异步函数返回promise
-    "no-empty": false
+    "no-empty": false,
+    "no-implicit-dependencies":[false],
+    "no-submodule-imports":[false,"src"]
   },
   "jsRules": {
     
