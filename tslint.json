@@ -25,6 +25,7 @@
     "no-empty": false,
     "no-implicit-dependencies":[false], // 此参数配置alias必须
     "no-submodule-imports":[false,"src"] // 次参数配置alias必须
+    
   },
   "jsRules": {
     

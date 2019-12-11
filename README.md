@@ -59,4 +59,11 @@
           |__UserAgent    判断浏览器类型
         |__App.tsx        入口文件 「最好不要更改」
         |__index.tsx      注入html文件, ⚠「不需要更改, 此文件为主要文件,」
+    8. 「alias 路径别名」
+    @/                  src
+    @Components/        src/Components
+    @Router/            src/Router
+    @Redux/             src/Redux
+    @Static/            src/Static
+    @Utils/             src/Utils
 ```

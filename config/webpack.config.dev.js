@@ -98,10 +98,11 @@ module.exports = {
     ],
     alias: {
       "@": path.resolve(__dirname, "../src" )  ,
-      "@Pages": path.resolve(__dirname, "../src/Page")  ,
-      "@Component": path.resolve(__dirname, "../src/Components")  ,
+      "@Pages/": path.resolve(__dirname, "../src/Page")  ,
+      "@Components/": path.resolve(__dirname, "../src/Components")  ,
       "@Utils/": path.resolve(__dirname, "../src/Utils/") ,
-      "@Static": path.resolve(__dirname, "../src/Static") ,
+      "@Static/": path.resolve(__dirname, "../src/Static") ,
+      "@Redux": path.resolve(__dirname, "../src/Redux"),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',

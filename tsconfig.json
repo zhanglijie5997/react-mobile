@@ -24,11 +24,12 @@
     "allowSyntheticDefaultImports": true,
     "downlevelIteration": true, // 开启全迭代模式
     "paths": {
-      "@/*": ["/src/*"],
-      "@Components/*": ["/src/Components/*"],
-      "@Static/*": ["/src/Static/*"],
+      "@/*": ["src/*"],
+      "@Components/*": ["src/Components/*"],
+      "@Static/*": ["src/Static/*"],
       "@Utils/*": ["src/Utils/*"],
-      "@Page/*": ["/src/Page/*"]
+      "@Page/*": ["src/Page/*"],
+      "@Redux/*":["src/Redux/*"]
     }
   },
   "exclude": [
