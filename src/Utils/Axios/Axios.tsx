@@ -17,8 +17,6 @@ const cancelToken:CancelTokenStatic = axios.CancelToken;
 const httpInit = async (url: string, axiosInit: AxiosInstance) => {
 
     axiosInit.interceptors.request.use((config: AxiosRequestConfig) => {
-        console.log(mapList.get(url), 'mapList.get(url)');
-        console.log(config.cancelToken, '???');
         // 不存在set一个对象
         if(!mapList.get(url)) {
             mapList.set(url, url);
@@ -47,23 +45,28 @@ const httpInit = async (url: string, axiosInit: AxiosInstance) => {
  * @param params     请求参数
  */
 const init = async (url: string, paramsData: any): Promise<any> => {
-     // 请求是判断是否请求结果未翻译，有则取消上一个请求
-    // mapList.set(url, url)
     const haveAxios: string = mapList.get(url)!;
      console.log(haveAxios, 'mmm');
     const axiosInit =  axios.create({
         baseURL: baseUrl,
-        method: paramsData.method.toUpperCase() || "GET",
+        method: "post",
         timeout: 10000,
         // withCredentials: false,  // 表示跨域请求时是否需要使用凭证
-        ...paramsData,
-        params: queryString.stringify(paramsData.data),     
-        cancelToken: haveAxios ? await cancelToken.source().token: ''
     });
-    // cancelTokenSource(url).cancel("delete");
     await httpInit(url, axiosInit);
-     
     return axiosInit(url, paramsData);
 }
 
-export default init;
+/** http 请求
+ * @param url      请求地址
+ * @param params   请求参数
+ * @param method   get | post
+ */
+const httpConnect =  (url: string,  params: any, method?: string) => {
+    return init(url,{
+        method: method || "post",
+        data: queryString.stringify(params)
+    })
+}
+
+export default httpConnect;

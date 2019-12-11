@@ -6,7 +6,7 @@ import { GetMusicUrltype } from "./HomeHttpType";
  * @param id      
  */
 export const getMusicUrl = async (id: string): Promise<GetMusicUrltype> => {
-    const data: GetMusicUrltype = await axiosInit("/song/url?id=" + id, {method: "GET", data:{}});
+    const data: GetMusicUrltype = await axiosInit( "/posts", { a: 1});
     return data;
 }
 
