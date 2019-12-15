@@ -23,14 +23,14 @@ const Home = (props: RouteComponentProps) => {
         if(getMusicList) {
             console.log(getMusicList, '---音乐类型---')
         }
-        // return () => { /***/ }
+        return () => { /***/ }
         // return () => homeListHttp();
     },[getMusicList]);
 
     // 请求数据
     const homeListHttp = useCallback(async () => {
-        const data: GetMusicUrltype = await getMusicUrl('15');
-        setMusicList(data);
+        // const data: GetMusicUrltype = await getMusicUrl('15');
+        // setMusicList(data);
     }, [getMusicList]);
 
     // 监听回调

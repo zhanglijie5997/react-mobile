@@ -81,6 +81,9 @@ module.exports = function(proxy, allowedHost) {
     },
     public: allowedHost,
     proxy,
+    progress: true, // 构建进度
+    noInfo: true, // 启用 noInfo 后，诸如「启动时和每次保存之后，那些显示的 webpack 包(bundle)信息」的消息将被隐藏。错误和警告仍然会显示。
+    useLocalIp: true,
     before(app) {
       // This lets us open files from the runtime error overlay.
       app.use(errorOverlayMiddleware());
@@ -91,5 +94,24 @@ module.exports = function(proxy, allowedHost) {
       // https://github.com/facebookincubator/create-react-app/issues/2272#issuecomment-302832432
       app.use(noopServiceWorkerMiddleware());
     },
+    stats: {
+      // 添加资源信息
+      assets: true,
+      // 添加构建日期和构建时间信息
+      builtAt: true,
+      // 添加缓存（但未构建）模块的信息
+      cached: true,
+      // 添加错误信息
+      errors: true,
+      // 添加错误的详细信息（就像解析日志一样）
+      errorDetails: true,
+      // 添加构建模块信息
+      modules: true,
+      // 添加 webpack 版本信息
+      version: true,
+
+      // 添加警告
+      warnings: true,
+    }
   };
 };

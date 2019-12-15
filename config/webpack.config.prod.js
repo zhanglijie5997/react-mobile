@@ -17,6 +17,15 @@ const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const HappyPack = require("happypack");
 const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+
+
+// vw 适配插件
+const postcssAspectRatioMini = require('postcss-aspect-ratio-mini');
+const postcssWriteSvg = require('postcss-write-svg');
+const postcssCssnext = require('postcss-cssnext');
+const cssnano = require('cssnano');
+
+
 // Webpack uses `publicPath` to determine where the app is being served from.
 // It requires a trailing slash, or the file assets will get an incorrect path.
 const publicPath = paths.servedPath;
@@ -30,6 +39,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 const publicUrl = publicPath.slice(0, -1);
+console.log(publicUrl, '/////')
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
@@ -49,6 +59,8 @@ const cssFilename = 'static/css/[name]_[md5:contenthash:hex:8].css';
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
     { publicPath: Array(cssFilename.split('/').length).join('../') }
+    //  { publicPath: "../build/" }
+
   : {};
 // console.log(extractTextPluginOptions, '66666')
 // This is the production configuration.
@@ -113,7 +125,7 @@ module.exports = {
       "@Components/": path.resolve(__dirname, "../src/Components/"),
       "@Utils/": path.resolve(__dirname, "../src/Utils/"),
       "@Static/": path.resolve(__dirname, "../src/Static/"),
-      "@Redux": path.resolve(__dirname, "../src/Redux"),
+      "@Redux/": path.resolve(__dirname, "../src/Redux/"),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -161,9 +173,7 @@ module.exports = {
             test: /\.(js|jsx|mjs)$/,
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
-            
             options: {
-              
               compact: true,
             },
           },
@@ -195,13 +205,15 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-            test: /\.(css|scss)$/,
+			      test: /\.(css|scss)$/,
             loader: ExtractTextPlugin.extract(
-              
               Object.assign(
                 {
+                  
+
                   fallback: {
                     loader: require.resolve('style-loader'),
+
                     options: {
                       hmr: false,
                     },
@@ -212,11 +224,10 @@ module.exports = {
                       loader: require.resolve('css-loader'),
                       options: {
                         modules: true,
-                        importLoaders: 1,
+                        // importLoaders: 1,
                         minimize: true,
-                        sourceMap: shouldUseSourceMap,
-                        localIdentName: '[path]_[name]_[local]_[hash:base64:8]'
-
+                        // sourceMap: shouldUseSourceMap,
+                        localIdentName: '[name]_[local]_[hash:base64:8]',
                       },
                     },
                     {
@@ -245,6 +256,18 @@ module.exports = {
                             ],
                             flexbox: 'no-2009',
                           }),
+                          postcssAspectRatioMini({}),
+                        postcssWriteSvg({
+                          utf8: false
+                        }),
+                        postcssCssnext({
+                          warnForDuplicates: false
+                        }),
+                        cssnano({
+                          preset: "advanced", 
+                          autoprefixer: false, 
+                          "postcss-zindex": false 
+                        }),
                         ],
                       },
                     },
@@ -375,6 +398,7 @@ module.exports = {
       sourceMap: shouldUseSourceMap,
     }), // Note: this won't work without ExtractTextPlugin.extract(..) in `loaders`.
     new ExtractTextPlugin({
+      allChunks: true, // 提取所有的css样式
       filename: cssFilename,
     }),
     // Generate a manifest file which contains a mapping of all asset filenames

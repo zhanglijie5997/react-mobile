@@ -12,6 +12,13 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+
+// vw 适配插件
+const postcssAspectRatioMini = require('postcss-aspect-ratio-mini'); // 用来处理元素容器宽高比。
+const postcssWriteSvg = require('postcss-write-svg'); // 用来处理移动端1px的解决方案。
+const postcssCssnext = require('postcss-cssnext'); // 使用下个版本的css语法
+const cssnano = require('cssnano'); // 将你的 CSS 文件做 多方面的的优化，以确保最终生成的文件 对生产环境来说体积是最小的。
+
 // console.log(webpack)
 // Webpack uses `publicPath` to determine where the app is being served from.
 // In development, we always serve from the root. This makes config easier.
@@ -97,12 +104,12 @@ module.exports = {
       '.jsx',
     ],
     alias: {
-      "@": path.resolve(__dirname, "../src" )  ,
-      "@Pages/": path.resolve(__dirname, "../src/Page")  ,
-      "@Components/": path.resolve(__dirname, "../src/Components")  ,
-      "@Utils/": path.resolve(__dirname, "../src/Utils/") ,
-      "@Static/": path.resolve(__dirname, "../src/Static") ,
-      "@Redux": path.resolve(__dirname, "../src/Redux"),
+      "@/": path.resolve(__dirname, "../src/"),
+      "@Pages/": path.resolve(__dirname, "../src/Page/"),
+      "@Components/": path.resolve(__dirname, "../src/Components/"),
+      "@Utils/": path.resolve(__dirname, "../src/Utils/"),
+      "@Static/": path.resolve(__dirname, "../src/Static/"),
+      "@Redux/": path.resolve(__dirname, "../src/Redux/"),
       // Support React Native Web
       // https://www.smashingmagazine.com/2016/08/a-glimpse-into-the-future-with-react-native-for-web/
       'react-native': 'react-native-web',
@@ -123,7 +130,6 @@ module.exports = {
       // TODO: Disable require.ensure as it's not a standard language feature.
       // We are waiting for https://github.com/facebookincubator/create-react-app/issues/2176.
       // { parser: { requireEnsure: false } },
-
       {
         test: /\.(js|jsx|mjs)$/,
         loader: require.resolve('source-map-loader'),
@@ -151,7 +157,6 @@ module.exports = {
             include: paths.appSrc,
             loader: require.resolve('babel-loader'),
             options: {
-              
               compact: true,
             },
           },
@@ -175,6 +180,7 @@ module.exports = {
           // "style" loader turns CSS into JS modules that inject <style> tags.
           // In production, we use a plugin to extract that CSS to a file, but
           // in development "style" loader enables hot editing of CSS.
+
           {
             test: /\.(css|scss)$/,
             exclude: [/node_modules/],
@@ -185,7 +191,7 @@ module.exports = {
                 options: {
                   modules: true,
                   importLoaders: 1,
-                  localIdentName: '[path]_[name]_[local]'
+                  localIdentName: '[name]_[local]'
                 },
               },
               {
@@ -195,14 +201,16 @@ module.exports = {
                   // https://github.com/facebookincubator/create-react-app/issues/2677
                   ident: 'postcss',
                   plugins: () => [
+                    
                     require('postcss-px-to-viewport')({
                       "viewportWidth": 750,
-                      "viewportHeight": 1334,
                       "unitPrecision": 3,
                       "viewportUnit": "vw",
-                      "selectorBlackList": [".ignore"],
+                      "selectorBlackList": [".ignore",'.hairlines'],
                       "minPixelValue": 1,
-                      "mediaQuery": false 
+                      "mediaQuery": false,
+                      "exclude":/(\/|\\)(node_modules)(\/|\\)/ 
+                      
                     }),
                     require('postcss-flexbugs-fixes'),
                     autoprefixer({
@@ -214,12 +222,23 @@ module.exports = {
                       ],
                       flexbox: 'no-2009',
                     }),
+                    postcssAspectRatioMini({}),
+                    postcssWriteSvg({
+                      utf8: false
+                    }),
+                    postcssCssnext({}),
+                    cssnano({
+                      preset: "advanced", 
+                      autoprefixer: false, 
+                      "postcss-zindex": false 
+                    }),
                   ],
                 },
               },
               {
                 loader:require.resolve("sass-loader")
-              }
+              },
+              
             ],
           },
           { test: /\.css$/, exclude: /(src)/, loader: 'style-loader!css-loader' },

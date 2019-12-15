@@ -7,24 +7,18 @@
        const [getStatus, setStatus] = useState<boolean>(false); 
     4. hooks useEffect, useCallback 页面如果有使用定时器等监听必须在useEffect内清除, 不然会报错, 内存泄漏
        [示例]
-       const [getTimer, setTimer] = useState<number | null>(0);
        useEffect(() => {
-           let time: NodeJs.Time = setTimeout(() => {
+           const time: NodeJs.Time = setTimeout(() => {
               // doSomething...
            }, 2000)
-           return () => {
-               clearTimeout(time);
-               clearInterval(getTimer);
-               time = null;
-               getTimer = null;
-           }
+           return clearTimeout(time)
        },[]);
 
        useCallBack(() => {
            const time = setInterval(() => {
                // doSomething...
            },1000);
-           setTimer(time)
+           return () => clearInterval(time);
        }, [])
     5. redux 使用步骤
        [示例]
@@ -39,19 +33,10 @@
     7. 「文件夹说明」
         src
         |__Component      组件文件夹, 每个路由对应的组件创建对应的文件夹, UniversalComponents 为通用文件夹
-          |__UniversalComponents  公共组件文件夹, 所有公共组件放在此文件夹
         |__Page           路由页面文件夹, 一个路由创建一个文件夹
         |__Redux          状态管理文件夹
-          |__Actions        redux   方法
-          |__Reducer        reducer 
-          |__State          数据
-          |__Store          集中管理数据
-          |__Types          方法枚举, 统一管理
         |__Roouter        路由管理文件夹
         |__Static         公共资源文件夹
-          |__Css            静态css资源
-          |__Images         静态图片资源
-          |__JS             静态js文件
         |__Utils          公共方法文件夹
           |__Axios        axios 文件
           |__HttpList     所有路由对应的文件夹的http请求
@@ -59,11 +44,15 @@
           |__UserAgent    判断浏览器类型
         |__App.tsx        入口文件 「最好不要更改」
         |__index.tsx      注入html文件, ⚠「不需要更改, 此文件为主要文件,」
-    8. 「alias 路径别名」
-    @/                  src
-    @Components/        src/Components
-    @Router/            src/Router
-    @Redux/             src/Redux
-    @Static/            src/Static
-    @Utils/             src/Utils
+    8. [路径别名<alias>] 
+        <1> @/            =>    src
+        <2> @Components   =>    src/Components
+        <3> @Static       =>    src/Static
+        <4> @Utils        =>    src/Utils
+        <5> @Page         =>    src/Page
+    9. [路由懒加载, 组件懒加载]
+        ```example
+            import loadable from "@loadable/component";
+            const Home = loadable(() => import(/* webpackChunkName: "User" */ "./xx/xx"))
+        ```
 ```

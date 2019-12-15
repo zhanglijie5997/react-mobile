@@ -24,8 +24,10 @@
     "promise-function-async": false, //要求异步函数返回promise
     "no-empty": false,
     "no-implicit-dependencies":[false], // 此参数配置alias必须
-    "no-submodule-imports":[false,"src"] // 次参数配置alias必须
-    
+    "no-submodule-imports": [false, "src"],// 次参数配置alias必须
+    "forin":true,
+    "variable-name": false, // 后台接口带下划线，不是驼峰格式需关闭
+    "prefer-for-of":false
   },
   "jsRules": {
     

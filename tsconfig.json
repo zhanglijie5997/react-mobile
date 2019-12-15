@@ -9,7 +9,7 @@
     "allowJs": true,
     "jsx": "react",
     "moduleResolution": "node",
-    "rootDirs": ["..", "src/Utils"],
+    "rootDir": "..",
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -29,7 +29,7 @@
       "@Static/*": ["src/Static/*"],
       "@Utils/*": ["src/Utils/*"],
       "@Page/*": ["src/Page/*"],
-      "@Redux/*":["src/Redux/*"]
+      "@Redux/*": ["src/Redux/*"],
     }
   },
   "exclude": [
