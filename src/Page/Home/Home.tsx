@@ -23,6 +23,10 @@ const Home = (props: RouteComponentProps) => {
         if(getMusicList) {
             console.log(getMusicList, '---音乐类型---')
         }
+        toastRef.current?.addEventListener("click", (event) => {
+            console.log(event, "???");
+        });
+
         return () => { /***/ }
         // return () => homeListHttp();
     },[getMusicList]);
