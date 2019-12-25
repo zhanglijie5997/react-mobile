@@ -1,0 +1,32 @@
+.appointmentDateHeader {
+    width: 100%;
+    ul {
+        padding: 30px 0px;
+        width: 630px;
+        margin: 0 auto;
+        display: flex;
+        border-bottom: 2px solid #f3f3f3;
+        li {
+            font-size: 22px;
+            margin-right: 50px;
+            white-space: nowrap;
+            &:last-child {
+                margin-right: 0;
+            }
+        }
+        .active {
+            color: #e81844;
+        }
+    }
+}
+
+@media only screen and (max-width:320px) {
+    .appointmentDateHeader {
+        ul {
+            li {
+                margin-right: 5.36vw!important;
+            }
+        }
+        
+    }
+}

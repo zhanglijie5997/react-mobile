@@ -1,0 +1,107 @@
+.appointmentDateBody {
+    padding: 30px 30px 40px;
+    .choicHeader {
+        display: flex;
+        justify-content: space-between;
+        p {
+            font-size: 30px;
+        }
+    }
+    
+    .month {
+        margin-bottom: 40px;
+        ul {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 30px;
+            li {
+                width: 48px;
+                height: 48px;
+                border-radius: 50%;
+                background: #f6f6f6;
+                position: relative;
+                margin-right: 48px;
+                margin-top: 30px;
+                // margin-left: 6px;
+                &:nth-child(2n+1) {
+                    margin-left: 0;
+                }
+                p {
+                    background: #c2c2c2;
+                    width: 36px;
+                    height: 36px;
+                    margin: 6px auto;
+                    font-size: 24px;
+                    border-radius: 50%;
+                    line-height: 24px;
+                    text-align: center;
+                    line-height: 36px;
+                    color: #ffffff;
+                }
+                &:after {
+                    content:  "";
+                    width: 33px;
+                    height: 2px;
+                    background: #ececec;
+                    position: absolute;
+                    top: 24px;
+                    left: 54px;
+                }
+                &:nth-child(7n),&:last-child {
+                    margin-right: 0;
+                    &:after {
+                        content:  "";
+                        width:0;
+                        height: 0px;
+                        background: #ececec;
+                        position: absolute;
+                        top: 24px;
+                        right: -33px;
+                    }
+                }
+                // 选中颜色
+                .select {
+                    background: #e81844!important;
+                }
+            }
+            .selectCircle {
+                background: #FFF1ED;
+            }
+        }
+    }
+
+    .btnList {
+        display: flex;
+        height: 100px;
+        width: 100vw;
+        left: 0;
+        bottom: 0;
+        position: fixed;
+        li {
+            flex: 1;
+            height: 100px;
+            button {
+                background: none;
+                width: 100%;
+                color: #ffffff;
+                height: 100%;
+                text-align: center;
+                font-size: 36px;
+            }
+            &:nth-child(1) {
+                background: #ffa54d;
+            }
+            &:nth-child(2) {
+                background: #e81844;
+            }
+        }
+    }
+}
+.hideText {
+    visibility: hidden;    
+}
+// 置灰
+.addGray {
+    background: #E7E7E7!important;
+    pointer-events: none;
+}

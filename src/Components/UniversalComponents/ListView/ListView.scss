@@ -1,0 +1,29 @@
+.listView{
+    position: relative;
+    background: #ffffff;
+    border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;
+    overflow: hidden;
+}
+.footText {
+    text-align: center;
+    padding: 10px 0;
+    color: #999999;
+    font-size: 24px;
+    height: 30px;
+    line-height: 30px;
+    // position: absolute;
+    // width: 690px;
+    background: #ffffff;
+    z-index: 999;
+}
+.loading {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    left: 45%;
+    // top: -20px;
+    span {
+        margin-left: 10px;
+    }
+}
