@@ -150,8 +150,8 @@ export const imgToBase64 = (src: string) => {
         img.onload = () => {
             const canvas = document.createElement("canvas");
             const ctx = canvas.getContext("2d");
-            canvas.width = 300;
-            canvas.height = 300;
+            canvas.width = img.width * 2;
+            canvas.height = img.height * 2;
             const ratio = canvasRatio(ctx);
             if(ctx) {
                 ctx.drawImage(img, 0, 0, img.width * ratio, img.height * ratio);
@@ -161,7 +161,6 @@ export const imgToBase64 = (src: string) => {
             }
         }
     }).then(res => {
-        console.log(res, 'ppppp');
         return res;
     })
 }
@@ -189,7 +188,8 @@ export const base64ToBolb = (base64: string) => {
         console.log(res);
         return res;
     }).catch(err => {
-        Toast.fail("图片上传失败,请重试")
+        Toast.fail("图片上传失败,请重试");
+        
     }) 
 }
 
