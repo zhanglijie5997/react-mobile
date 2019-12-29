@@ -1,0 +1,49 @@
+.shop {
+    width: 690px;
+    border-radius: 30px;
+    margin: 20px auto;
+    background: #ffffff;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    .christmas {
+        width: 600px;
+        height: 600px;
+        margin: 0 auto;
+        position: relative;
+        .top {
+            width: 100%;
+            display: flex;
+        }
+        .right {
+            position: absolute;
+            right: 0;
+            
+        }
+        .bottom {
+            position: absolute;
+            bottom: 0;
+            display: flex;
+            right: 150px;
+            
+        }
+        .left {
+            position: absolute;
+            left: 0;
+            top: 150px;   
+        }
+        .active {
+            -webkit-filter: drop-shadow(6px 6px 10px green) blur(2px);
+            filter: drop-shadow(6px 6px s10px green) blur(2px);
+            transform: scale(1.08);
+        }
+    }
+    .childNode {
+        width: 150px;
+        height: 150px;
+        // background: red;
+        // flex: 1;
+        // border: 1px solid #999999;
+        background: url(http://pic.90sjimg.com/design/00/07/85/23/5a3c63e0854b9.png);
+        background-size: cover;
+    }
+}
