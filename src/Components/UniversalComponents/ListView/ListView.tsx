@@ -61,6 +61,7 @@ const MyListView = (props: ListViewType) => {
         if (tipRef && tipRef.current) {
             const clientHeightY = tipRef.current.getBoundingClientRect();
             const windowHeight = window.innerHeight;
+            // 上啦加载
             if(clientHeightY.top - windowHeight < props.offset) {
                 if(getLoadingStatus) {
                     window.cancelAnimationFrame(getAnimation);
@@ -69,7 +70,10 @@ const MyListView = (props: ListViewType) => {
             }else{
                 const animationStatus = window.requestAnimationFrame(requestAnimationFn);
                 setLoadingStatus(true)
-                setAnimation(animationStatus)}
+                setAnimation(animationStatus)
+            }
+            // 下啦刷新
+            // if(clientHeightY.top)
         }
         
     },[getLoadingStatus])
