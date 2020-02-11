@@ -58,8 +58,8 @@ const cssFilename = 'static/css/[name]_[md5:contenthash:hex:8].css';
 // To have this structure working with relative paths, we have to use custom options.
 const extractTextPluginOptions = shouldUseRelativeAssetPaths
   ? // Making sure that the publicPath goes back to to build folder.
-    { publicPath: Array(cssFilename.split('/').length).join('../') }
-    //  { publicPath: "../build/" }
+  { publicPath: Array(cssFilename.split('/').length).join('../') }
+  //  { publicPath: "../build/" }
 
   : {};
 // console.log(extractTextPluginOptions, '66666')
@@ -67,7 +67,7 @@ const extractTextPluginOptions = shouldUseRelativeAssetPaths
 // It compiles slowly and is focused on producing a fast and minimal bundle.
 // The development configuration is different and lives in a separate file.
 module.exports = {
-  mode: 'production', 
+  mode: 'production',
   // Don't attempt to continue if there are any errors.
   bail: true,
   // We generate sourcemaps in production. This is slow but gives good results.
@@ -138,7 +138,7 @@ module.exports = {
       // Make sure your source files are compiled, as they will not be processed in any way.
       new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       new TsconfigPathsPlugin({ configFile: paths.appTsProdConfig }),
-      
+
     ],
   },
   module: {
@@ -205,11 +205,11 @@ module.exports = {
           // use the "style" loader inside the async code so CSS from them won't be
           // in the main CSS file.
           {
-			      test: /\.(css|scss)$/,
+            test: /\.(css|scss)$/,
             loader: ExtractTextPlugin.extract(
               Object.assign(
                 {
-                  
+
 
                   fallback: {
                     loader: require.resolve('style-loader'),
@@ -244,7 +244,7 @@ module.exports = {
                             "viewportUnit": "vw",
                             "selectorBlackList": [".ignore"],
                             "minPixelValue": 1,
-                            "mediaQuery": false 
+                            "mediaQuery": false
                           }),
                           require('postcss-flexbugs-fixes'),
                           autoprefixer({
@@ -257,24 +257,24 @@ module.exports = {
                             flexbox: 'no-2009',
                           }),
                           postcssAspectRatioMini({}),
-                        postcssWriteSvg({
-                          utf8: false
-                        }),
-                        postcssCssnext({
-                          warnForDuplicates: false
-                        }),
-                        cssnano({
-                          preset: "advanced", 
-                          autoprefixer: false, 
-                          "postcss-zindex": false 
-                        }),
+                          postcssWriteSvg({
+                            utf8: false
+                          }),
+                          postcssCssnext({
+                            warnForDuplicates: false
+                          }),
+                          cssnano({
+                            preset: "advanced",
+                            autoprefixer: false,
+                            "postcss-zindex": false
+                          }),
                         ],
                       },
                     },
                     {
                       // loader:require.resolve("sass-loader"),
-                     
-                      loader:require.resolve("fast-sass-loader"),
+
+                      loader: require.resolve("fast-sass-loader"),
 
                     }
                   ],
@@ -294,7 +294,7 @@ module.exports = {
             // it's runtime that would otherwise processed through "file" loader.
             // Also exclude `html` and `json` extensions so they get processed
             // by webpacks internal loaders.
-            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/,/\.scss/,/node_module/],
+            exclude: [/\.(js|jsx|mjs)$/, /\.html$/, /\.json$/, /\.scss/, /node_module/],
             options: {
               name: 'static/media/[name].[hash:8].[ext]',
             },
@@ -311,6 +311,25 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    // 避免按需加载产生更多的chunk，超过数量/大小会被合并
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 15, // 必须大于或等于 1
+      minChunkSize: 10000
+    }),
+    // 通过合并小于 minChunkSize 大小的 chunk，将 chunk 体积保持在指定大小限制以上。
+    new webpack.optimize.MinChunkSizePlugin({
+      minChunkSize: 10000 // Minimum number of characters
+    }),
+    // 不必要到处import require
+    new webpack.ProvidePlugin({
+      React: "react"
+    }),
+    // 根据模块的相对路径生成一个四位数的hash作为模块id, 建议用于生产环境
+    new webpack.HashedModuleIdsPlugin({
+      hashFunction: 'sha256',
+      hashDigest: 'hex',
+      hashDigestLength: 20
+    }),
     // 使用happypack提高构建速度
     new HappyPack({
       id: "js",

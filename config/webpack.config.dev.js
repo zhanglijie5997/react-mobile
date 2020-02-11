@@ -12,7 +12,7 @@ const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const getClientEnvironment = require('./env');
 const paths = require('./paths');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
-
+const HardSourceWebpackPlugin = require("hard-source-webpack-plugin");
 // vw 适配插件
 const postcssAspectRatioMini = require('postcss-aspect-ratio-mini'); // 用来处理元素容器宽高比。
 const postcssWriteSvg = require('postcss-write-svg'); // 用来处理移动端1px的解决方案。
@@ -269,7 +269,26 @@ module.exports = {
     // The public URL is available as %PUBLIC_URL% in index.html, e.g.:
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In development, this will be an empty string.
-   
+    // 避免按需加载产生更多的chunk，超过数量/大小会被合并
+    new webpack.optimize.LimitChunkCountPlugin({
+      maxChunks: 15, // 必须大于或等于 1
+      minChunkSize: 10000
+    }),
+    // 通过合并小于 minChunkSize 大小的 chunk，将 chunk 体积保持在指定大小限制以上。
+    new webpack.optimize.MinChunkSizePlugin({
+      minChunkSize: 10000 // Minimum number of characters
+    }),
+    // 确保npm install <library>强制进行项目重建。
+    new WatchMissingNodeModulesPlugin(path.resolve('node_modules')),
+    // 按出现顺序对模块和块进行排序。这样可以节省空间，因为经常引用的模块和块会获得较小的ID。
+    new webpack.optimize.OccurrenceOrderPlugin(true),
+    // 对模块进行重复数据删除并添加运行时代码。
+    new webpack.NamedModulesPlugin(),
+    // 不必要到处import require
+    new webpack.ProvidePlugin({
+        React: "react"
+    }),
+    new HardSourceWebpackPlugin(),
     // Generates an `index.html` file with the <script> injected.
     new HtmlWebpackPlugin({
       inject: true,
