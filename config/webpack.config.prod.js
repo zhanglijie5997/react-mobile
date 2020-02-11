@@ -16,7 +16,8 @@ const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const CompressionPlugin = require("compression-webpack-plugin");
 const HappyPack = require("happypack");
-const happyThreadPool = HappyPack.ThreadPool({ size: 5 });
+const os = require("os");
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
 
 // vw 适配插件

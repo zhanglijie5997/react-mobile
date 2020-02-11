@@ -1,1 +1,0 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{207:function(n,t,e){"use strict";e.r(t);var o=e(0),i=e.n(o),u=function(){document.body.style.position="fixed"},c=function(){document.body.style.position="static"};t.default=function(n){return i.a.createElement(i.a.Fragment,null,"登录",i.a.createElement("input",{type:"text",onFocus:u,onBlur:c}))}}}]);
