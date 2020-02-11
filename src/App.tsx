@@ -1,16 +1,17 @@
 import React, {  useEffect, useCallback } from 'react';
-import { withRouter } from "react-router-dom";
+import { withRouter ,useHistory} from "react-router-dom";
 import Router from './Router/Router';
 import { RouteComponentProps, StaticContext } from "react-router";
 import styles from "./App.scss";
 import { mapKey } from './Utils/Base/Base';
-import { Toast } from 'antd-mobile';
 import { useDispatch } from 'react-redux';
 import { LocationType } from './Redux/State/StateType';
 import { userLocalAction } from './Redux/Actions/Actions';
 
 const App = (props: RouteComponentProps<any, any>) => {
   const dispatch = useDispatch();
+  const history = useHistory();
+  console.log(history, 'history');
   useEffect(() => {
     let mapObj: any = null;
     let geolocation: any = null;
@@ -54,7 +55,8 @@ const App = (props: RouteComponentProps<any, any>) => {
   },[]);
   /** 失败回调 */
   const onError = useCallback((event) => {
-    Toast.fail("获取地理位置失败, 请刷新重试");
+    // Toast.fail("获取地理位置失败, 请刷新重试");
+    console.warn("获取地理位置失败, 请刷新重试")
   },[])
   return (
     <div className={styles.appBar}>

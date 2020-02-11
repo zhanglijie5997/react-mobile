@@ -1,12 +1,12 @@
 {
-  "Shop.js": "/static/js/Shop.0a428eec.chunk.js",
-  "Home.js": "/static/js/Home.bc6f25de.chunk.js",
-  "app.js": "/static/js/app.ab55723a.chunk.js",
-  "main.js": "/static/js/main.e4c463f4.js",
-  "main.css": "/static/css/main_fdea830d.css",
-  "vendors~app.js": "/static/js/vendors~app.69e3a54f.chunk.js",
+  "Shop.js": "/static/js/Shop.b09c396e.chunk.js",
+  "Home.js": "/static/js/Home.b386ee14.chunk.js",
+  "app.js": "/static/js/app.012e663b.chunk.js",
+  "main.js": "/static/js/main.52e1f8c6.js",
+  "main.css": "/static/css/main_4d499de8.css",
+  "vendors~app.js": "/static/js/vendors~app.f579721c.chunk.js",
   "index.html": "/index.html",
-  "static/js/app.ab55723a.chunk.js.gz": "/static/js/app.ab55723a.chunk.js.gz",
-  "static/js/main.e4c463f4.js.gz": "/static/js/main.e4c463f4.js.gz",
-  "static/js/vendors~app.69e3a54f.chunk.js.gz": "/static/js/vendors~app.69e3a54f.chunk.js.gz"
+  "static/js/app.012e663b.chunk.js.gz": "/static/js/app.012e663b.chunk.js.gz",
+  "static/js/main.52e1f8c6.js.gz": "/static/js/main.52e1f8c6.js.gz",
+  "static/js/vendors~app.f579721c.chunk.js.gz": "/static/js/vendors~app.f579721c.chunk.js.gz"
 }

@@ -158,6 +158,9 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
+              plugins:[
+                ["import", [{ libraryName: "antd-mobile", style: "css" }]],
+              ]
             },
           },
 

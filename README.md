@@ -55,4 +55,6 @@
             import loadable from "@loadable/component";
             const Home = loadable(() => import(/* webpackChunkName: "User" */ "./xx/xx"))
         ```
+    10.[可能遇到的 bug]
+        input输入框设置100% 可能会在ios上显示异常， 最好input输入框的宽度小于父元素的的宽度
 ```

@@ -11,11 +11,14 @@ const RouterPage: (props: RouteComponentProps) => JSX.Element = (props: RouteCom
     const [getRouterConfigPage, setRouterConfigPage] = useState<RouteConfigType[]>(bottomRouterConfig.concat(routerConfig)); // 路由配置
     const [getShowAppBar, setShowAppBar] = useState<string[]>(["/user", "/index", "/", "/shop", "/reservation"]);
     const [getSelectPage, setSelectPage] = useState<number>(-1); // 当前选择页面
+    const [getPage, setPage] = useState<string>("/index");
     const userStatus = useSelector((state: { userStatusReducer: boolean}) => state.userStatusReducer); // 用户登陆状态, 此处为获取redux state参数,可以用对象获取自己需要的参数
     
     useEffect(() => {
         const pageSelect: number = nowPage.get(props.location.pathname)!();
-        setSelectPage(pageSelect) 
+        setSelectPage(pageSelect);
+        const page = props.location.pathname;
+        setPage(page);
     }, [userStatus, props.location]);
 
     // 当前所处页面Map对象
@@ -27,14 +30,24 @@ const RouterPage: (props: RouteComponentProps) => JSX.Element = (props: RouteCom
         ["/user", () => 3],
     ]);
 
+    const navgiation = useCallback((index: number, to: string ) => {
+        setSelectPage(index);
+        if(getPage === to) {
+            return
+        }else {
+            setPage(to);
+            props.history.push(to)
+        }
+    },[getPage])
+
     // 导航, 重定向路由不显示在页面
     const routerNav: JSX.Element[] =  bottomRouterConfig.map((item: RouteConfigType, index: number) => {
-        return <Link to={item.path} key={index} className={styles.navItem} onClick={() => setSelectPage(index)}>
+        return <div  key={index} className={styles.navItem} onClick={() => navgiation(index, item.path)}>
                   <div  className={styles.navitemBox}>
                     <img src={getSelectPage === index ? item.selectImg : item.defaultImg} alt=""/>
                     <p className={[getSelectPage === index ? styles.selectColor : ''].join(" ")}>{item.meta.title}</p>
                   </div>
-               </Link>
+               </div>
     }) 
     // 路由页面
     const routerPage: JSX.Element[] = getRouterConfigPage.map((item: RouteConfigType, index: number) => {

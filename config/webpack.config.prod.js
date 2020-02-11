@@ -19,6 +19,7 @@ const HappyPack = require("happypack");
 const os = require("os");
 const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin
 
 // vw 适配插件
 const postcssAspectRatioMini = require('postcss-aspect-ratio-mini');
@@ -176,6 +177,9 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
+              plugins:[
+                ["import", [{ libraryName: "antd-mobile", style: "css" }]],
+              ]
             },
           },
           // Compile .tsx?
@@ -312,6 +316,7 @@ module.exports = {
     // <link rel="shortcut icon" href="%PUBLIC_URL%/favicon.ico">
     // In production, it will be an empty string unless you specify "homepage"
     // in `package.json`, in which case it will be the pathname of that URL.
+    new BundleAnalyzerPlugin(),
     // 避免按需加载产生更多的chunk，超过数量/大小会被合并
     new webpack.optimize.LimitChunkCountPlugin({
       maxChunks: 15, // 必须大于或等于 1

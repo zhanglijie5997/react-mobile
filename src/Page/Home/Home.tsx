@@ -1,5 +1,4 @@
 import React, {useEffect, useCallback, useState, useRef} from 'react';
-import { Toast } from "antd-mobile";
 import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
 import { getMusicUrl } from "@Utils/HttpList/HomeHttp/HomeHttp";
@@ -47,11 +46,11 @@ const Home = (props: RouteComponentProps) => {
     }
 
     const toastShow = useCallback(() => {
-        Toast.fail("success", 1,() => {
-            document.body.removeEventListener("touchmove", slideEvent);
-            document.body.style.overflow = "inherit";
-            setTouchmoveStatus(false);
-        }, true);
+        // Toast.fail("success", 1,() => {
+        //     document.body.removeEventListener("touchmove", slideEvent);
+        //     document.body.style.overflow = "inherit";
+        //     setTouchmoveStatus(false);
+        // }, true);
         document.body.addEventListener("touchmove", slideEvent, {passive: false});
     },[])
 
