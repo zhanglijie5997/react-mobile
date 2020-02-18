@@ -1,12 +1,13 @@
 {
-  "Shop.js": "/static/js/Shop.b09c396e.chunk.js",
-  "Home.js": "/static/js/Home.b386ee14.chunk.js",
-  "app.js": "/static/js/app.012e663b.chunk.js",
-  "main.js": "/static/js/main.52e1f8c6.js",
-  "main.css": "/static/css/main_4d499de8.css",
-  "vendors~app.js": "/static/js/vendors~app.f579721c.chunk.js",
+  "Home.js": "/static/js/Home.aeb23077.chunk.js",
+  "app.js": "/static/js/app.b1e5b124.chunk.js",
+  "main.js": "/static/js/main.489db1a8.js",
+  "main.css": "/static/css/main_e2617d04.css",
+  "vendors~app.js": "/static/js/vendors~app.a9f8bd66.chunk.js",
   "index.html": "/index.html",
-  "static/js/app.012e663b.chunk.js.gz": "/static/js/app.012e663b.chunk.js.gz",
-  "static/js/main.52e1f8c6.js.gz": "/static/js/main.52e1f8c6.js.gz",
-  "static/js/vendors~app.f579721c.chunk.js.gz": "/static/js/vendors~app.f579721c.chunk.js.gz"
+  "static/js/Home.aeb23077.chunk.js.gz": "/static/js/Home.aeb23077.chunk.js.gz",
+  "static/js/app.b1e5b124.chunk.js.gz": "/static/js/app.b1e5b124.chunk.js.gz",
+  "static/js/main.489db1a8.js.gz": "/static/js/main.489db1a8.js.gz",
+  "static/js/vendors~app.a9f8bd66.chunk.js.gz": "/static/js/vendors~app.a9f8bd66.chunk.js.gz",
+  "static/media/WechatIMG61.c9606291.png": "/static/media/WechatIMG61.c9606291.png"
 }

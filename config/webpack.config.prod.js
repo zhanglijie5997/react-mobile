@@ -77,7 +77,7 @@ module.exports = {
   // devtool: shouldUseSourceMap ? 'source-map' : false,
   devtool: false,
   // In production, we only want to load the polyfiflls and the app code.
-  entry: [require.resolve('./polyfills'), paths.appIndexJs],
+  entry: [require.resolve('./polyfills'), paths.appIndexJs, ],
   output: {
     // The build folder.
     path: paths.appBuild,
@@ -165,11 +165,40 @@ module.exports = {
           // assets smaller than specified size as data URLs to avoid requests.
           {
             test: [/\.bmp$/, /\.gif$/, /\.jpe?g$/, /\.png$/],
-            loader: require.resolve('url-loader'),
-            options: {
-              limit: 10000,
-              name: 'static/media/[name].[hash:8].[ext]',
-            },
+            use: [
+              {
+                loader: require.resolve('url-loader'),
+                options: {
+                  limit: 10000,
+                  name: 'static/media/[name].[hash:8].[ext]',
+                },
+
+              },
+              {
+                loader: "image-webpack-loader",
+                options: {
+                  mozjpeg: {
+                    progressive: true,
+                    quality: 65
+                  },
+                  optipng: {
+                    enabled: false,
+                  },
+                  pngquant: {
+                    quality: [0.65, 0.90],
+                    speed: 4
+                  },
+                  gifsicle: {
+                    interlaced: false,
+                  },
+                  // the webp option will enable WEBP
+                  webp: {
+                    quality: 75
+                  }
+                }
+              }
+            ]
+
           },
           {
             test: /\.(js|jsx|mjs)$/,
@@ -177,7 +206,7 @@ module.exports = {
             loader: require.resolve('babel-loader'),
             options: {
               compact: true,
-              plugins:[
+              plugins: [
                 ["import", [{ libraryName: "antd-mobile", style: "css" }]],
               ]
             },
@@ -304,6 +333,7 @@ module.exports = {
               name: 'static/media/[name].[hash:8].[ext]',
             },
           },
+
           // ** STOP ** Are you adding a new loader?
           // Make sure to add the new loader(s) before the "file" loader.
         ],
@@ -360,7 +390,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       inject: true,
       template: paths.appHtml,
-      // chunks:['manifest']
+      // chunks:['manifest'],
       minify: {
         removeComments: true,
         collapseWhitespace: true,
@@ -490,11 +520,10 @@ module.exports = {
   },
   externals: {
     "react": "React",
-    "redux": "Redux",
-    'axios': "axios",
-    "react-dom": "ReactDOM",
-    "react-router": "ReactRouter",
-    // "antd-mobile": "antd-mobile"
-    // "react-dom": "ReactDOM"
+    // "redux": "Redux",
+    // 'axios': "axios",
+    // "react-dom": "ReactDOM",
+    // "react-router": "ReactRouter",
+    // "antd-mobile": "antd-mobile",
   }
 };

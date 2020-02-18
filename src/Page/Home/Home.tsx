@@ -2,8 +2,10 @@ import React, {useEffect, useCallback, useState, useRef} from 'react';
 import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
 import { getMusicUrl } from "@Utils/HttpList/HomeHttp/HomeHttp";
-import { GetMusicUrltype } from "src/Utils/HttpList/HomeHttp/HomeHttpType";
+import { GetMusicUrltype } from "@Utils/HttpList/HomeHttp/HomeHttpType";
 import { RouteComponentProps } from 'react-router';
+import test from "@Static/Images/Store/WechatIMG61.png";
+
 
 const Home = (props: RouteComponentProps) => {
     const [getLlist, setList] = useState<number[]>(new Array(100).fill(null).map((_, index: number) => index)); // 图片懒加载示例
@@ -65,6 +67,7 @@ const Home = (props: RouteComponentProps) => {
     return (
         <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")}>
             <button onClick={homeListHttp}>请求数据</button>
+            <img src={test} alt=""/>
             {(lazyLoadList)}
             Home1315ff
         </div>

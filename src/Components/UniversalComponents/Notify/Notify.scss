@@ -1,0 +1,26 @@
+.notify {
+    position: fixed;
+    width: 50vw;
+    left: 25vw;
+    top: -108px;
+    height: 104px;
+    border-radius: 20px;
+    border: 1px solid red;
+    animation: topTo 2s linear;
+    .inform {
+        font-size: 20px;
+        text-indent: 20px;
+    }
+    .msg {
+        text-indent: 20px;
+        padding: 20px 0 0 0;
+    }
+}
+@keyframes topTo {
+    0% {
+        top: -108px;
+    }
+    100%{
+        top: 108px;
+    }
+}

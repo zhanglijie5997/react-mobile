@@ -6,7 +6,7 @@ const User = loadable(() => import(/* webpackChunkName: "User" */"./User/User"))
 const Shop = loadable(() => import(/* webpackChunkName: "Shop" */"./Shop/Shop"));
 const Reservation = loadable(() => import(/* webpackChunkName: "Reservation" */"./Reservation/Reservation"));
 
-import home from "src/Static/Images/AppBar/heigshouye_9_12.9@2x.png"; // 首页未选中
+import home from "@Static/Images/AppBar/heigshouye_9_12.9@2x.png"; // 首页未选中
 import homeSelect from "src/Static/Images/AppBar/hongshouye_9_12.9@2x.png"; // 首页选中
 import shop from "src/Static/Images/AppBar/heishangpin_9_12.9@2x.png"; // 商品未选中
 import shopSelect from "src/Static/Images/AppBar/hongishangpin_9_12.9@2x.png"; // 商品选中
