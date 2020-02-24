@@ -1,0 +1,22 @@
+.user {
+    .container {
+        
+        .top {
+            height: 30px;
+            background-image: linear-gradient(blue, blue,blue);
+            -webkit-background-clip:text;
+            background-clip: text;
+            // background-position: 0 20px, 0 100px ;
+            color: transparent;
+            background-repeat: no-repeat;
+        }
+        .bottom {
+            height: 50px;
+        }
+        // .text {
+        //     // position: absolute;
+        //     top: 0;
+        //     z-index: 10;
+        // }
+    }
+}

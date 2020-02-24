@@ -54,3 +54,6 @@ html body {
 div {
 	cursor: pointer;
 }
+li {
+	list-style: none;
+}

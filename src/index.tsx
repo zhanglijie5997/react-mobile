@@ -10,7 +10,7 @@ const App = loadable(() => import(/* webpackChunkName: "app" */'./App'));
 // 创建store注入
 const store = configureStore(createBrowserHistory());
 import './Static/Css/Reset.css';
-
+import 'antd-mobile/dist/antd-mobile.css';  // or 'antd-mobile/dist/antd-mobile.less'
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>

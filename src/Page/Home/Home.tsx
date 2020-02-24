@@ -11,9 +11,23 @@ const Home = (props: RouteComponentProps) => {
     const [getLlist, setList] = useState<number[]>(new Array(100).fill(null).map((_, index: number) => index)); // 图片懒加载示例
     const [getTouchmoveStatus, setTouchmoveStatus] = useState<boolean>(false); // touchmove 状态
     const [getMusicList, setMusicList] = useState<GetMusicUrltype>(); // 数据类型
+    const [getShow, setShow] = useState<boolean>(false);
     const toastRef = useRef<HTMLDivElement>(null);
     // 这里只请求一次
     useEffect(() => {
+        const observing = new IntersectionObserver(function(entries: any[]) {
+
+            console.log(entries[0].intersectionRatio, 'entries');
+            if (entries[0].intersectionRatio <= 0) { 
+                setShow(true);
+                return; 
+            }else {
+                // setShow(false)
+                return;
+            }
+            
+        });
+        observing.observe(document.getElementById("toast")!);
         console.log(props, '---props----')
         homeListHttp();
         return () => document.body.removeEventListener("touchmove", slideEvent)
@@ -63,11 +77,12 @@ const Home = (props: RouteComponentProps) => {
                     </LazyLoad>
                 </div>)
     })
-
+    
     return (
-        <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")}>
-            <button onClick={homeListHttp}>请求数据</button>
-            <img src={test} alt=""/>
+        <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")} >
+            <img src={test} alt="" className={styles.bgImg}/>
+            <button onClick={homeListHttp} id="toast" className={[styles.getData, getShow ? styles.positon: ``].join(" ")} >请求数据</button>
+            
             {(lazyLoadList)}
             Home1315ff
         </div>
