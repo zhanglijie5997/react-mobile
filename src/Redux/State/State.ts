@@ -22,3 +22,6 @@ export const userLocal: LocationType = sessionStorage.getItem("userLocal") ?  JS
         lng: 0, // 经度
     }
 };
+
+// 是否iphoneX
+export const isIphoneX: boolean  = JSON.parse(localStorage.getItem('isIphoneX')!) || false;

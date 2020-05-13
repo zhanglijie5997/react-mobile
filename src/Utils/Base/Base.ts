@@ -3,12 +3,6 @@ import { Toast } from 'antd-mobile';
 
 export const mapKey = "3180595fffa04cb3a0988d48ffad5422"; // 高德地图key值
 
-// 图片os服务器基础路径, 以前的图片
-export const imgBaseUrl: string = "https://youlin168.oss-cn-shenzhen.aliyuncs.com/to_appreciate/Other/"; 
-
-// 美业会员 阿里云os地址
-export const meiyeBaseUrl: string = "https://youlin168.oss-cn-shenzhen.aliyuncs.com/meiye/"; 
-
 /** 防抖
  * @param fn     回掉函数 
  * @param time   时间
@@ -191,6 +185,17 @@ export const base64ToBolb = (base64: string) => {
         Toast.fail("图片上传失败,请重试");
         
     }) 
+}
+
+/** 是否刘海屏
+ *  @returns true 是 false 否
+ */
+export const isIphoneX = (): boolean => {
+    const { clientHeight, clientWidth } = document.documentElement;
+    if(clientHeight / clientWidth <= 16 /9) {
+        return false
+    }
+    return true
 }
 
 

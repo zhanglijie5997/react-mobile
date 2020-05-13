@@ -2,4 +2,5 @@
 export enum ActionsEnum {
     UserStatusAction = 'UserStatusAction',
     userLocalAction  = 'userLocalAction',
+    iphoneXAction = 'iphoneXAction'
 }

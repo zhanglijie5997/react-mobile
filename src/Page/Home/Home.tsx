@@ -3,6 +3,7 @@ import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
 import { GetMusicUrltype } from "@Utils/HttpList/HomeHttp/HomeHttpType";
 import { RouteComponentProps } from 'react-router';
+import { getMusicUrl } from '@/Utils/HttpList/HomeHttp/HomeHttp';
 
 
 const Home = (props: RouteComponentProps) => {
@@ -45,7 +46,7 @@ const Home = (props: RouteComponentProps) => {
 
     // 请求数据
     const homeListHttp = useCallback(async () => {
-        // const data: GetMusicUrltype = await getMusicUrl('15');
+        const data = await getMusicUrl<GetMusicUrltype>('15');
         // setMusicList(data);
     }, [getMusicList]);
 

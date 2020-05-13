@@ -1,5 +1,5 @@
 import { handleActions, Action } from "redux-actions";
-import { userStatus, userLocal } from '../State/State';
+import { userStatus, userLocal, isIphoneX } from '../State/State';
 import { ActionsEnum } from '../Types/Types';
 import { LocationType } from '../State/StateType';
 
@@ -20,7 +20,16 @@ const userLocaltionReducer = handleActions<LocationType>({
     }
 }, userLocal)
 
+// 是否iphoneX
+const isIphoneXReducer = handleActions<boolean>({
+    [ActionsEnum.iphoneXAction]: (state: boolean, action: Action<boolean>) => {
+        localStorage.setItem("isIphoneX", JSON.stringify(action.payload));
+        return action.payload;
+    }
+}, isIphoneX)
+
 export {
     userStatusReducer, 
     userLocaltionReducer,
+    isIphoneXReducer
 }

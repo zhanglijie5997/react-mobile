@@ -8,7 +8,11 @@ const userStatusAction = createAction(ActionsEnum.UserStatusAction, (status: boo
 // 设置用户地理位置
 const userLocalAction = createAction(ActionsEnum.userLocalAction, (state: LocationType) => state);
 
+// 是否iphoneX
+const iphoneXAction = createAction(ActionsEnum.iphoneXAction, (state: boolean) => state)
+
 export {
     userStatusAction,
-    userLocalAction
+    userLocalAction,
+    iphoneXAction
 }

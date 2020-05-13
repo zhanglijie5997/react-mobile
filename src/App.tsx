@@ -3,14 +3,15 @@ import { withRouter ,useHistory} from "react-router-dom";
 import Router from './Router/Router';
 import { RouteComponentProps, StaticContext } from "react-router";
 import styles from "./App.scss";
-import { mapKey } from './Utils/Base/Base';
+import { mapKey, isIphoneX } from './Utils/Base/Base';
 import { useDispatch } from 'react-redux';
 import { LocationType } from './Redux/State/StateType';
-import { userLocalAction } from './Redux/Actions/Actions';
+import { userLocalAction, iphoneXAction } from './Redux/Actions/Actions';
 import './Static/Css/Base.scss'
+import { IsIphoneXHook } from './Hooks/IsIphoneX';
 const App = (props: RouteComponentProps<any, any>) => {
+  const iphoneXStatus = IsIphoneXHook();
   const dispatch = useDispatch();
-  const history = useHistory();
   useEffect(() => {
     let mapObj: any = null;
     let geolocation: any = null;
@@ -46,6 +47,11 @@ const App = (props: RouteComponentProps<any, any>) => {
       AMap.event.removeEventListener(geolocation, "error", onError);
     }
   },[]);
+
+  useEffect(() => {
+    dispatch(iphoneXAction(iphoneXStatus))
+  }, [iphoneXStatus]) 
+
   /** 成功回调 */
   const onComplete = useCallback((event: LocationType) => {
     console.log(event, '地理位置');

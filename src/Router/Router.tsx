@@ -12,7 +12,10 @@ const RouterPage: (props: RouteComponentProps) => JSX.Element = (props: RouteCom
     const [getShowAppBar, setShowAppBar] = useState<string[]>(["/user", "/index", "/", "/shop", "/reservation"]);
     const [getSelectPage, setSelectPage] = useState<number>(-1); // 当前选择页面
     const [getPage, setPage] = useState<string>("/index");
-    const userStatus = useSelector((state: { userStatusReducer: boolean}) => state.userStatusReducer); // 用户登陆状态, 此处为获取redux state参数,可以用对象获取自己需要的参数
+    const userStatus = useSelector((state: { 
+        userStatusReducer: boolean,
+        isIphoneXReducer: boolean
+    }) => ({userStatusReducer: state.userStatusReducer, isIphoneXReducer: state.isIphoneXReducer})); // 用户登陆状态, 此处为获取redux state参数,可以用对象获取自己需要的参数
     
     useEffect(() => {
         const pageSelect: number = nowPage.get(props.location.pathname)!();
