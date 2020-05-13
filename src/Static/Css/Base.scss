@@ -1,0 +1,14 @@
+/* 两端对齐 */
+:global(.spaceBetween) {
+    display: flex;
+    justify-content: space-between;
+}
+/* 文字显示2行 */
+:global(.column2Text){
+    display: -webkit-box;
+    overflow: hidden;
+    line-clamp: 2;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+}
+ 

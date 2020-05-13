@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useCallback, ChangeEvent } from 'react'
+import React, { useMemo, useState, useCallback, ChangeEvent, memo } from 'react'
 import styles from "./FormValidate.scss";
 import { PropsType, DataType } from './FromValidateType';
 
@@ -26,4 +26,11 @@ const FormValidate = (props: PropsType) => {
     )
 }
 
-export default FormValidate
+function propsChange(curProps: PropsType, nextProps: PropsType): boolean {
+    if(JSON.stringify(curProps.data) !== JSON.stringify(nextProps)) {
+        return true;
+    }
+    return false;
+}
+
+export default memo(FormValidate, propsChange) 

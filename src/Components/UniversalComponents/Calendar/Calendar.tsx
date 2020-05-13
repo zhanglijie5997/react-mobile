@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from 'react'
+import React, { useEffect, useState, useCallback, memo } from 'react'
 import styles from "./Calendar.scss";
 import  { RouteComponentProps } from 'react-router';
 import Times from "@Utils/Base/Times";
@@ -13,13 +13,20 @@ interface ShowMonthType {
     list?: number[],
     currentTime?: number
 }
+
+interface CalendarProps {
+    routerFn: RouteComponentProps
+    date: number
+    showMonth: number
+}
+
 /** 日历组件
  *  @param props
  *      @param routerFn  路由方法
  *      @param date      当前时间时间戳
  *      @param showMonth 展示多少个月
  */
-const Calendar = (props: {routerFn: RouteComponentProps,date: number,showMonth: number}) => {
+const Calendar = (props: CalendarProps) => {
     const [getCurrentDay, setCurrentDay] = useState<JSX.Element[]>(); // NodeList
     const [getSelect, setSelect] = useState<number>(-1); // 选择的时间
     const [getSelectSatus, setSelectStatus] = useState<boolean>(false); // 状态
@@ -96,4 +103,13 @@ const Calendar = (props: {routerFn: RouteComponentProps,date: number,showMonth: 
         </div>
     )
 }
-export default Calendar
+
+function changeProps(curProps: CalendarProps, nextProps: CalendarProps): boolean{
+    console.log(curProps, nextProps, '-------')
+    if(curProps.date !== nextProps.date) {
+        return true;
+    }
+    return false
+}
+
+export default memo(Calendar, changeProps) 

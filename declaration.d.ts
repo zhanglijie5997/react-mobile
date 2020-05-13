@@ -13,6 +13,8 @@ declare const WeixinJSBridge: any;
 // 全局组件使用
 declare const AMap: any;
 
-
+declare interface Window {
+    onLoad: () => void
+}
 
 

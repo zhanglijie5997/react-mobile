@@ -7,15 +7,14 @@ import { mapKey } from './Utils/Base/Base';
 import { useDispatch } from 'react-redux';
 import { LocationType } from './Redux/State/StateType';
 import { userLocalAction } from './Redux/Actions/Actions';
-
+import './Static/Css/Base.scss'
 const App = (props: RouteComponentProps<any, any>) => {
   const dispatch = useDispatch();
   const history = useHistory();
-  console.log(history, 'history');
   useEffect(() => {
     let mapObj: any = null;
     let geolocation: any = null;
-    window["onLoad"] = () => {
+    window.onLoad = () => {
       mapObj = new AMap.Map('container');
       console.log(mapObj, '---map---');
       mapObj.plugin('AMap.Geolocation', function () {
@@ -52,12 +51,12 @@ const App = (props: RouteComponentProps<any, any>) => {
     console.log(event, '地理位置');
     // 全局管理用户地理位置
     dispatch(userLocalAction(event));
-  },[]);
+  },[dispatch]);
   /** 失败回调 */
   const onError = useCallback((event) => {
     // Toast.fail("获取地理位置失败, 请刷新重试");
     console.warn("获取地理位置失败, 请刷新重试")
-  },[])
+  },[dispatch])
   return (
     <div className={styles.appBar}>
         {/*kankna*/}

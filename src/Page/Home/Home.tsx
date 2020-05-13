@@ -1,10 +1,8 @@
 import React, {useEffect, useCallback, useState, useRef} from 'react';
 import styles from "./Home.scss";
 import LazyLoad from "react-lazyload";
-import { getMusicUrl } from "@Utils/HttpList/HomeHttp/HomeHttp";
 import { GetMusicUrltype } from "@Utils/HttpList/HomeHttp/HomeHttpType";
 import { RouteComponentProps } from 'react-router';
-import test from "@Static/Images/Store/WechatIMG61.png";
 
 
 const Home = (props: RouteComponentProps) => {
@@ -28,7 +26,6 @@ const Home = (props: RouteComponentProps) => {
             
         });
         observing.observe(document.getElementById("toast")!);
-        console.log(props, '---props----')
         homeListHttp();
         return () => document.body.removeEventListener("touchmove", slideEvent)
     }, []);
@@ -80,8 +77,8 @@ const Home = (props: RouteComponentProps) => {
     
     return (
         <div onClickCapture={toastShow} ref={toastRef} className={[styles.size].join(" ")} >
-            <img src={test} alt="" className={styles.bgImg}/>
-            <button onClick={homeListHttp} id="toast" className={[styles.getData, getShow ? styles.positon: ``].join(" ")} >请求数据</button>
+            {/* <img src={test} alt="" className={styles.bgImg}/> */}
+            <button onClick={homeListHttp} id="toast" className={[styles.getData, getShow ? styles.positon: ``, 'spaceBetween'].join(" ")} >请求数据</button>
             
             {(lazyLoadList)}
             Home1315ff

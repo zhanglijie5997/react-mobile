@@ -7,16 +7,13 @@ const Shop = loadable(() => import(/* webpackChunkName: "Shop" */"./Shop/Shop"))
 const Reservation = loadable(() => import(/* webpackChunkName: "Reservation" */"./Reservation/Reservation"));
 
 import home from "@Static/Images/AppBar/heigshouye_9_12.9@2x.png"; // 首页未选中
-import homeSelect from "src/Static/Images/AppBar/hongshouye_9_12.9@2x.png"; // 首页选中
-import shop from "src/Static/Images/AppBar/heishangpin_9_12.9@2x.png"; // 商品未选中
-import shopSelect from "src/Static/Images/AppBar/hongishangpin_9_12.9@2x.png"; // 商品选中
-import vip from "src/Static/Images/AppBar/heihuiyuan_9_12.9@2x.png"; // vip选中
-import vipSelect from "src/Static/Images/AppBar/honghuiyuan_9_12.9@2x.png"; // vip选中
-import reservation from "src/Static/Images/AppBar/heiyuyue_9_12.9@2x.png"; // 预约未选中
-import reservationSelect from "src/Static/Images/AppBar/hongyuyue_9_12.9@2x.png"; // 预约选中
-
-
-
+import homeSelect from "@Static/Images/AppBar/hongshouye_9_12.9@2x.png"; // 首页选中
+import shop from "@Static/Images/AppBar/heishangpin_9_12.9@2x.png"; // 商品未选中
+import shopSelect from "@Static/Images/AppBar/hongishangpin_9_12.9@2x.png"; // 商品选中
+import vip from "@Static/Images/AppBar/heihuiyuan_9_12.9@2x.png"; // vip选中
+import vipSelect from "@Static/Images/AppBar/honghuiyuan_9_12.9@2x.png"; // vip选中
+import reservation from "@Static/Images/AppBar/heiyuyue_9_12.9@2x.png"; // 预约未选中
+import reservationSelect from "@Static/Images/AppBar/hongyuyue_9_12.9@2x.png"; // 预约选中
 
 // 底部路由配置
 export const bottomRouterConfig: RouteConfigType[] = [
