@@ -1,6 +1,6 @@
-import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CancelTokenStatic, Canceler}from "axios";
+import axios , { AxiosInstance, AxiosRequestConfig, AxiosResponse, CancelTokenSource, CancelTokenStatic, Canceler, AxiosError}from "axios";
 import queryString from "qs";
-import { Toast } from "antd-mobile";
+import { message } from "antd";
 import { baseUrl } from "./AxiosConfig";
 
 const mapList:Map<string, string>= new Map();
@@ -14,9 +14,10 @@ const cancelToken:CancelTokenStatic = axios.CancelToken;
  * @param url          请求路径
  * @param axiosInit    axios实例
  */
-const httpInit = async (url: string, axiosInit: AxiosInstance) => {
-
+const httpInit = (url: string, axiosInit: AxiosInstance) => {
     axiosInit.interceptors.request.use((config: AxiosRequestConfig) => {
+        console.log(config, '???');
+        config.headers.token = sessionStorage.getItem("token");
         // 不存在set一个对象
         if(!mapList.get(url)) {
             mapList.set(url, url);
@@ -34,9 +35,22 @@ const httpInit = async (url: string, axiosInit: AxiosInstance) => {
         if(mapList.has(url)) {
             mapList.delete(url);
         }
-        return  Promise.resolve(config.data);
-    }, (err: Error) => {
-        Toast.fail("网络错误, 请刷新重试");
+        console.log(config.data);
+        switch (config.data.code) {
+            case 200:
+                return config.data.data;
+            case 301:
+                // Toast.fail(config.data.msg);
+                return false;
+            default:
+                return false;
+        }
+        
+    }, (err: AxiosError) => {
+        console.log(err.response?.data);
+        const code: number = err.response?.data.code;
+        message.error("网络错误");
+        return Promise.resolve(err.response)
     })
 };
 
@@ -44,16 +58,21 @@ const httpInit = async (url: string, axiosInit: AxiosInstance) => {
  * @param url        请求路径
  * @param params     请求参数
  */
-const init = async (url: string, paramsData: any): Promise<any> => {
+const init =  (url: string, paramsData: any): Promise<any> => {
     const haveAxios: string = mapList.get(url)!;
-     console.log(haveAxios, 'mmm');
     const axiosInit =  axios.create({
+        headers: {
+            // "Content-type": "application/www-form-urlencoded;charset=UTF-8",
+            // "Authorization":  "Bearer " 
+        },
+
         baseURL: baseUrl,
-        method: "post",
-        timeout: 10000,
+        method:  "post",
+        timeout: 3000,
+        ...paramsData
         // withCredentials: false,  // 表示跨域请求时是否需要使用凭证
     });
-    await httpInit(url, axiosInit);
+    httpInit(url, axiosInit);
     return axiosInit(url, paramsData);
 }
 
@@ -62,11 +81,21 @@ const init = async (url: string, paramsData: any): Promise<any> => {
  * @param params   请求参数
  * @param method   get | post
  */
-const httpConnect =  (url: string,  params: any, method?: string) => {
+const httpConnect =  (url: string,  params: string, method?: AxiosRequestConfig["method"]) => {
     return init(url,{
-        method: method || "post",
-        data: queryString.stringify(params)
+        method: method || "POST",
+        data:  params
     })
 }
 
+export const post = (url: string,  params: any) => {
+    return init(url,{
+        method: "POST" ,
+        data: queryString.stringify(params) 
+    })
+}
+
+export const get = (url: string, params: any) => init(url, {
+    method: "GET", params
+})
 export default httpConnect;

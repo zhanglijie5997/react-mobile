@@ -5,7 +5,7 @@ const Home = loadable(() => import(/* webpackChunkName: "Home" */ "./Home/Home")
 const User = loadable(() => import(/* webpackChunkName: "User" */"./User/User"));
 const Shop = loadable(() => import(/* webpackChunkName: "Shop" */"./Shop/Shop"));
 const Reservation = loadable(() => import(/* webpackChunkName: "Reservation" */"./Reservation/Reservation"));
-
+const RouterPages = loadable(() => import(/* webpackChunkName: "/index" */"../Router/Router"))
 import home from "@Static/Images/AppBar/heigshouye_9_12.9@2x.png"; // 首页未选中
 import homeSelect from "@Static/Images/AppBar/hongshouye_9_12.9@2x.png"; // 首页选中
 import shop from "@Static/Images/AppBar/heishangpin_9_12.9@2x.png"; // 商品未选中
@@ -18,14 +18,14 @@ import reservationSelect from "@Static/Images/AppBar/hongyuyue_9_12.9@2x.png"; /
 // 底部路由配置
 export const bottomRouterConfig: RouteConfigType[] = [
     {
-        path: "/index",
+        path: "/",
         excat: true,
         component: Home,
-        name: "主页",
+        name: "汇播",
         defaultImg: home,
         selectImg: homeSelect,
         meta: {
-            title: "主页",
+            title: "汇播",
             requiresAuth: false
         }
     },
@@ -73,7 +73,7 @@ const defaultPage: RouteConfigType = {
     excat: false,
     component: Home,
     meta: {
-        title: "主页",
+        title: "汇播",
         requiresAuth: false
     }
 };

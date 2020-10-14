@@ -41,7 +41,7 @@ const shouldUseSourceMap = process.env.GENERATE_SOURCEMAP !== 'false';
 // as %PUBLIC_URL% in `index.html` and `process.env.PUBLIC_URL` in JavaScript.
 // Omit trailing slash as %PUBLIC_URL%/xyz looks better than %PUBLIC_URL%xyz.
 const publicUrl = publicPath.slice(0, -1);
-console.log(publicUrl, '/////')
+console.log(publicPath, '/////')
 // Get environment variables to inject into our app.
 const env = getClientEnvironment(publicUrl);
 
@@ -52,7 +52,7 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 }
 
 // Note: defined here because it will be used more than once.
-const cssFilename = 'static/css/[name]_[md5:contenthash:hex:8].css';
+const cssFilename = './static/css/[name]_[md5:contenthash:hex:8].css';
 
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
@@ -84,10 +84,10 @@ module.exports = {
     // Generated JS file names (with nested folders).
     // There will be one main bundle, and one file per asynchronous chunk.
     // We don't currently advertise code splitting but Webpack supports it.
-    filename: 'static/js/[name].[chunkhash:8].js',
-    chunkFilename: 'static/js/[name].[chunkhash:8].chunk.js',
+    filename: './static/js/[name].[chunkhash:8].js',
+    chunkFilename: './static/js/[name].[chunkhash:8].chunk.js',
     // We inferred the "public path" (such as / or /my-project) from homepage.
-    publicPath: publicPath,
+    publicPath: "",
     // Point sourcemap entries to original disk location (format as URL on Windows)
     devtoolModuleFilenameTemplate: info =>
       path
@@ -170,7 +170,7 @@ module.exports = {
                 loader: require.resolve('url-loader'),
                 options: {
                   limit: 10000,
-                  name: 'static/media/[name].[hash:8].[ext]',
+                  name: './static/media/[name].[hash:8].[ext]?x-oss-process=image/resize,w_700/format,jpg/quality,q_85',
                 },
 
               },
@@ -207,7 +207,7 @@ module.exports = {
             options: {
               compact: true,
               plugins: [
-                ["import", [{ libraryName: "antd-mobile", style: "css" }]],
+                ["import", [{ libraryName: "antd", style: "css" }]],
               ]
             },
           },
@@ -271,15 +271,15 @@ module.exports = {
                         // https://github.com/facebookincubator/create-react-app/issues/2677
                         ident: 'postcss',
                         plugins: () => [
-                          require('postcss-px-to-viewport')({
-                            "viewportWidth": 750,
-                            "viewportHeight": 1334,
-                            "unitPrecision": 3,
-                            "viewportUnit": "vw",
-                            "selectorBlackList": [".ignore"],
-                            "minPixelValue": 1,
-                            "mediaQuery": false
-                          }),
+                          // require('postcss-px-to-viewport')({
+                          //   "viewportWidth": 750,
+                          //   "viewportHeight": 1334,
+                          //   "unitPrecision": 3,
+                          //   "viewportUnit": "vw",
+                          //   "selectorBlackList": [".ignore"],
+                          //   "minPixelValue": 1,
+                          //   "mediaQuery": false
+                          // }),
                           require('postcss-flexbugs-fixes'),
                           autoprefixer({
                             browsers: [
@@ -470,7 +470,7 @@ module.exports = {
       // If a URL is already hashed by Webpack, then there is no concern
       // about it being stale, and the cache-busting can be skipped.
       dontCacheBustUrlsMatching: /\.\w{8}\./,
-      filename: 'service-worker.js',
+      filename: './service-worker.js',
       logger(message) {
         if (message.indexOf('Total precache size is') === 0) {
           // This message occurs for every build and is a bit too noisy.
@@ -519,7 +519,7 @@ module.exports = {
     child_process: 'empty',
   },
   externals: {
-    "react": "React",
+    // "react": "React",
     // "redux": "Redux",
     // 'axios': "axios",
     // "react-dom": "ReactDOM",

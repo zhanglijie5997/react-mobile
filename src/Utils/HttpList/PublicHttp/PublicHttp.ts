@@ -22,21 +22,14 @@ export const upload = async (file: File) => {
         }).then(async (res: Blob) => {
             const file = new File([res], Date.now() + name + ".jpeg", {type: "image/jpeg"})
             formData.append("file", file)
-            const data = await axiosInit("xxx",{
-                formData
-            });
-            return data;
+            
         }).catch(err => {
             return null;
         })
     }else {
         formData.append("file", file)
-        result = await axiosInit("xxx", {
-            formData
-        });
         return result;
     }
-    
-    return result["data"]
+    return ""
     
 }

@@ -15,6 +15,9 @@ declare const AMap: any;
 
 declare interface Window {
     onLoad: () => void
+    goLogin: {
+        postMessage: (args: string) => void
+    }
 }
 
 

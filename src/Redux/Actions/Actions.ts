@@ -11,8 +11,12 @@ const userLocalAction = createAction(ActionsEnum.userLocalAction, (state: Locati
 // 是否iphoneX
 const iphoneXAction = createAction(ActionsEnum.iphoneXAction, (state: boolean) => state)
 
+// 设置用户token
+const setUserToken = createAction(ActionsEnum.setUserToken, (state: string) => state )
+
 export {
     userStatusAction,
     userLocalAction,
-    iphoneXAction
+    iphoneXAction,
+    setUserToken
 }

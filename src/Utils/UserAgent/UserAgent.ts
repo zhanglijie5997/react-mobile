@@ -14,7 +14,9 @@ const userAgent: (type: UserAgentType) => boolean = (type: UserAgentType) => {
     const map:Map<string, () => boolean> = new Map([
         ["isWx",      () => navigatorUserAgent.includes("MICROMESSENGER")],
         ["isAndroid", () => navigatorUserAgent.includes("ANDROID")],
-        ["isIos",     () => navigatorUserAgent.includes("IOS")],
+        ["isIos",     () => navigatorUserAgent.includes("IPHONE")],
     ]);
     return map.get(type)!();
 }
+
+export default userAgent;

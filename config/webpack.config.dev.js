@@ -159,7 +159,7 @@ module.exports = {
             options: {
               compact: true,
               plugins:[
-                ["import", [{ libraryName: "antd-mobile", style: "css" }]],
+                ["import", [{ libraryName: "antd", style: "css" }]],
               ]
             },
           },
@@ -205,16 +205,16 @@ module.exports = {
                   ident: 'postcss',
                   plugins: () => [
                     
-                    require('postcss-px-to-viewport')({
-                      "viewportWidth": 750,
-                      "unitPrecision": 3,
-                      "viewportUnit": "vw",
-                      "selectorBlackList": [".ignore",'.hairlines'],
-                      "minPixelValue": 1,
-                      "mediaQuery": false,
-                      "exclude":/(\/|\\)(node_modules)(\/|\\)/ 
+                    // require('postcss-px-to-viewport')({
+                    //   "viewportWidth": 750,
+                    //   "unitPrecision": 3,
+                    //   "viewportUnit": "vw",
+                    //   "selectorBlackList": [".ignore",'.hairlines'],
+                    //   "minPixelValue": 1,
+                    //   "mediaQuery": false,
+                    //   "exclude":/(\/|\\)(node_modules)(\/|\\)/ 
                       
-                    }),
+                    // }),
                     require('postcss-flexbugs-fixes'),
                     autoprefixer({
                       browsers: [
@@ -232,7 +232,7 @@ module.exports = {
                     postcssCssnext({}),
                     cssnano({
                       preset: "advanced", 
-                      autoprefixer: false, 
+                      // autoprefixer: false, 
                       "postcss-zindex": false 
                     }),
                   ],

@@ -1,5 +1,5 @@
 import { handleActions, Action } from "redux-actions";
-import { userStatus, userLocal, isIphoneX } from '../State/State';
+import { userStatus, userLocal, isIphoneX, token } from '../State/State';
 import { ActionsEnum } from '../Types/Types';
 import { LocationType } from '../State/StateType';
 
@@ -28,8 +28,17 @@ const isIphoneXReducer = handleActions<boolean>({
     }
 }, isIphoneX)
 
+// 设置用户token
+const setUserTokenReducer = handleActions<string>({
+    [ActionsEnum.setUserToken]: (state: string, action: Action<string>) => {
+        sessionStorage.setItem("token", action.payload);
+        return action.payload;
+    }
+}, token)
+
 export {
     userStatusReducer, 
     userLocaltionReducer,
-    isIphoneXReducer
+    isIphoneXReducer,
+    setUserTokenReducer
 }

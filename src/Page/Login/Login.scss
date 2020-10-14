@@ -1,0 +1,14 @@
+.login {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .logo {
+        font-size: 22px;
+        padding-left: 30px;
+        line-height: 60px;
+        font-weight: 600;
+        color: #333;
+    }
+}
